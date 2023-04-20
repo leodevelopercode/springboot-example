@@ -1,0 +1,20 @@
+server:
+  port: 8889
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oa
+    username: root
+    password: dawjxxx
+  mail:
+    host: smtp.163.com
+    username: nixgnixeix@163.com
+    password: TUSHMDLGXHZYZEWA
+# MyBatis配置
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.eama.xxx.entities
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true

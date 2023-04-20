@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eama.xxx.mapper.UserMapper">
+
+    <resultMap id="userResult" type="user">
+        <id property="user_id" column="userId"/>
+        <result property="user_name" column="userName"/>
+        <result property="name" column="name"/>
+        <result property="department_id" column="departmentId"/>
+        <result property="position" column="position"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="is_admin" column="isAdmin"/>
+    </resultMap>
+    
+    <resultMap id="sendEmailToUser" type="sendEmailToUser">
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+    </resultMap>
+    
+
+    <sql id="userResultColumn">
+        userId,userName,name,departmentId,position,email,phone,isAdmin
+    </sql>
+    
+    <sql id="senUserColumn">
+        name,email
+    </sql>
+    
+    <select id="selUserById" resultMap="sendEmailToUser" parameterType="integer">
+        SELECT
+        <include refid="senUserColumn"/>
+        FROM
+        oa_user
+        WHERE
+        userId = #{userId}
+    </select>
+
+    <select id="selectUserById" resultMap="userResult" parameterType="integer">
+        SELECT
+        <include refid="userResultColumn"/>
+        FROM oa_user
+        WHERE
+        userId = #{userId}
+    </select>
+
+</mapper>
