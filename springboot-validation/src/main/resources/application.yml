@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Validation
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: dawjxxx
+

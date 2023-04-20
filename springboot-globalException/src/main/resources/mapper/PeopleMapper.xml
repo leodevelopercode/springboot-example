@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.PeopleMapper">
+
+    <resultMap id="userResult" type="com.example.model.entity.People">
+        <id property="user_id" column="userId"/>
+        <result property="user_name" column="userName"/>
+        <result property="name" column="name"/>
+        <result property="department_id" column="departmentId"/>
+        <result property="position" column="position"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="is_admin" column="isAdmin"/>
+    </resultMap>
+
+    <sql id="userResultColumn">
+        SELECT userId,userName,name,departmentId,position,email,phone,isAdmin FROM people
+    </sql>
+
+    <select id="selpeopleAll" resultMap="userResult" parameterType="Integer">
+        <include refid="userResultColumn"></include>
+        WHERE userId = #{userid}
+    </select>
+
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.dao.PeopleDao">
+
+    <resultMap id="userResult" type="com.xxx.module.entities.PeopleInfo">
+        <id property="user_id" column="userId"/>
+        <result property="user_name" column="userName"/>
+        <result property="name" column="name"/>
+        <result property="department_id" column="departmentId"/>
+        <result property="position" column="position"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="is_admin" column="isAdmin"/>
+    </resultMap>
+
+    <resultMap id="excelPeople" type="com.xxx.module.vo.PeopleExcel">
+        <result property="user_name" column="userName"/>
+        <result property="name" column="name"/>
+        <result property="department_id" column="departmentId"/>
+        <result property="position" column="position"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="is_admin" column="isAdmin"/>
+    </resultMap>
+
+    <sql id="userResultColumn">
+        SELECT userId,userName,name,departmentId,position,email,phone,isAdmin FROM people
+    </sql>
+    <sql id="peopleExcelData">
+        SELECT userName,name,departmentId,position,email,phone,isAdmin FROM people
+    </sql>
+
+    <select id="selPeople" resultMap="userResult">
+        <include refid="userResultColumn"></include>
+        limit 1
+    </select>
+    
+    <select id="selAllPeople" resultMap="userResult">
+        <include refid="userResultColumn"></include>
+        limit 0,100
+    </select>
+    
+    <select id="selExcelData" resultMap="excelPeople">
+        <include refid="peopleExcelData"></include>
+        limit 0,100
+    </select>
+    
+    <select id="countPeople" resultType="integer">
+        SELECT COUNT(*) FROM people
+    </select>
+
+</mapper>
